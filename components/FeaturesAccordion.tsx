@@ -20,7 +20,7 @@ const features = [
     description:
       "Create professional quotes in minutes with customizable templates, automatic pricing calculations, and real-time material cost updates. Track every quote's status and follow-up automatically.",
     image: {
-      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      path: "/gemquote_dashboard.png",
       alt: "Smart quoting dashboard showing quote management interface",
     },
     svg: (
@@ -45,7 +45,7 @@ const features = [
     description:
       "Let AI handle follow-ups, reminders, and customer communications with a consistent brand voice. Smart notifications ensure no opportunity slips through the cracks.",
     image: {
-      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      path: "/gemquote_dashboard.png",
       alt: "AI communication interface showing automated messaging",
     },
     svg: (
@@ -70,7 +70,7 @@ const features = [
     description:
       "Track your sales pipeline from initial inquiry to final sale. Monitor conversion rates, identify bottlenecks, and optimize your sales process with detailed analytics.",
     image: {
-      path: "/gemquote_sales_dashboard.png", // Replace with your actual image path
+      path: "/gemquote_dashboard.png",
       alt: "Sales pipeline visualization showing deal stages",
     },
     svg: (
@@ -95,7 +95,7 @@ const features = [
     description:
       "Build stronger customer relationships with detailed customer profiles, purchase history tracking, and automated anniversary reminders. Keep all customer interactions in one place.",
     image: {
-      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      path: "/gemquote_dashboard.png",
       alt: "Customer relationship management dashboard",
     },
     svg: (
@@ -227,7 +227,9 @@ const FeaturesAccordion = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         {/* Section heading */}
         <h2 className="font-serif font-extrabold text-4xl lg:text-5xl tracking-tight mb-16 md:mb-24 text-center">
-          <span className="text-neutral-50">Everything you need to </span>
+          <span className="text-neutral-50 block mb-2">
+            Everything you need to{" "}
+          </span>
           <span className="bg-primary text-neutral-950 px-4 py-1 rounded-md inline-block transform -rotate-3 hover:rotate-0 hover:scale-110 transition-all duration-300">
             scale
           </span>

@@ -43,12 +43,6 @@ const Step = ({ emoji, text }: { emoji: string; text: string }) => {
 const Problem = () => {
   return (
     <section className="relative w-full bg-neutral-950 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-      </div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
         {/* Heading */}
         <h2 className="max-w-3xl mx-auto font-serif font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8 text-center">

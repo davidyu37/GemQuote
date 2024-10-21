@@ -1,3 +1,5 @@
+// components/CTA.tsx
+
 import Image from "next/image";
 import config from "@/config";
 
@@ -8,7 +10,7 @@ const CTA = () => {
       <Image
         src="/gemquote_cta.png"
         alt="Background"
-        className="object-cover w-full brightness-[0.6]"
+        className="object-cover w-full h-full brightness-[0.3]"
         fill
         priority
       />
@@ -39,7 +41,10 @@ const CTA = () => {
             <ul className="flex flex-col md:flex-row justify-center gap-6 md:gap-12 text-neutral-50">
               {["Quick Setup", "Priority Access", "Launch Pricing"].map(
                 (feature) => (
-                  <li key={feature} className="flex items-center gap-3 group">
+                  <li
+                    key={feature}
+                    className="flex items-center justify-center gap-3 group"
+                  >
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-350 ease-luxury">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

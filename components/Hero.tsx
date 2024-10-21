@@ -67,9 +67,6 @@ const Hero = () => {
           {/* Testimonials with fade-up animation */}
           <div className="w-full opacity-0 animate-fade-up [animation-delay:1200ms]">
             <TestimonialsAvatars priority={true} />
-            <p className="mt-4 text-sm text-neutral-400">
-              Join hundreds of jewellers already transforming their business
-            </p>
           </div>
         </div>
 

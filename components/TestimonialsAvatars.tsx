@@ -42,6 +42,7 @@ const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
               priority={priority}
               width={50}
               height={50}
+              className="rounded-full ring-2 ring-neutral-950 bg-neutral-900"
             />
           </div>
         ))}
@@ -55,7 +56,7 @@ const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-5 h-5 text-yellow-500"
+              className="w-5 h-5 text-primary"
               key={i}
             >
               <path
@@ -67,8 +68,8 @@ const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
           ))}
         </div>
 
-        <div className="text-base text-base-content/80">
-          <span className="font-semibold text-base-content">32</span> Happy
+        <div className="text-neutral-300">
+          <span className="font-semibold text-neutral-50">32</span> Happy
           Jewellers Globally
         </div>
       </div>
