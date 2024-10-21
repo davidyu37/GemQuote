@@ -3,7 +3,7 @@
 const Arrow = ({ extraStyle }: { extraStyle: string }) => {
   return (
     <svg
-      className={`shrink-0 w-12 fill-neutral-content opacity-70 ${extraStyle}`}
+      className={`shrink-0 w-12 fill-primary/60 transition-transform duration-350 ease-luxury hover:scale-105 ${extraStyle}`}
       viewBox="0 0 138 138"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -26,43 +26,64 @@ const Arrow = ({ extraStyle }: { extraStyle: string }) => {
 
 const Step = ({ emoji, text }: { emoji: string; text: string }) => {
   return (
-    <div className="w-full md:w-48 flex flex-col gap-2 items-center justify-center">
-      <span className="text-4xl">{emoji}</span>
-      <h3 className="font-bold text-center">{text}</h3>
+    <div className="group w-full md:w-48 flex flex-col gap-4 items-center justify-center p-6 rounded-lg bg-neutral-900/50 border border-primary/10 transition-all duration-350 ease-luxury hover:border-primary/30">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gold-gradient opacity-0 group-hover:opacity-10 rounded-full transition-opacity duration-350 ease-luxury"></div>
+        <span className="relative text-5xl transform transition-transform duration-350 ease-luxury group-hover:scale-110">
+          {emoji}
+        </span>
+      </div>
+      <h3 className="font-medium text-center text-neutral-200 group-hover:text-neutral-50 transition-colors duration-350 ease-luxury">
+        {text}
+      </h3>
     </div>
   );
 };
 
 const Problem = () => {
   return (
-    <section className="bg-neutral text-neutral-content">
-      <div className="max-w-7xl mx-auto px-8 py-16 md:py-32 text-center">
-        <h2 className="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
-          <span className="bg-primary text-primary-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed whitespace-nowrap">
+    <section className="relative w-full bg-neutral-950 overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
+        {/* Heading */}
+        <h2 className="max-w-3xl mx-auto font-serif font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8 text-center">
+          <span className="bg-primary text-neutral-950 px-4 py-1 rounded-md inline-block mb-2 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
             Lost Sales
           </span>{" "}
-          Are Costing Your Business
+          <span className="text-neutral-50">Are Costing Your Business</span>
         </h2>
-        <p className="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20">
+
+        {/* Description */}
+        <p className="max-w-xl mx-auto text-lg text-neutral-300 leading-relaxed mb-16 md:mb-24 text-center">
           Every delayed quote and missed follow-up represents potential revenue
           slipping away. Manual processes and disorganized communications lead
           to frustrated customers and lost opportunities.
         </p>
 
-        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6">
+        {/* Steps */}
+        <div className="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 md:gap-12">
           <Step
             emoji="⏰"
             text="Hours spent creating and managing quotes manually"
           />
 
-          <Arrow extraStyle="max-md:-scale-x-100 md:-rotate-90" />
+          <div className="flex items-center">
+            <Arrow extraStyle="max-md:-scale-x-100 md:-rotate-90" />
+          </div>
 
           <Step
             emoji="📧"
             text="Inconsistent follow-ups and missed opportunities"
           />
 
-          <Arrow extraStyle="md:-scale-x-100 md:-rotate-90" />
+          <div className="flex items-center">
+            <Arrow extraStyle="md:-scale-x-100 md:-rotate-90" />
+          </div>
 
           <Step
             emoji="💔"
@@ -70,6 +91,9 @@ const Problem = () => {
           />
         </div>
       </div>
+
+      {/* Bottom decorative border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-primary/10"></div>
     </section>
   );
 };

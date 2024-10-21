@@ -7,45 +7,61 @@ import logo from "@/app/icon.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 border-t border-base-content/10">
-      <div className="max-w-7xl mx-auto px-8 py-12">
-        <div className="flex flex-col items-center gap-8">
+    <footer className="relative bg-neutral-950 border-t border-primary/10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col items-center gap-10">
           {/* Logo and Company Info */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={logo}
-              alt={`${config.appName} logo`}
-              className="w-6 h-6"
-              width={24}
-              height={24}
-              priority
-            />
-            <span className="font-bold text-lg">{config.appName}</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative p-1">
+              <Image
+                src={logo}
+                alt={`${config.appName} logo`}
+                className="w-8 h-8 transition-transform duration-350 ease-luxury group-hover:scale-105"
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <span className="font-serif font-bold text-xl text-neutral-50 group-hover:text-primary transition-colors duration-350 ease-luxury">
+              {config.appName}
+            </span>
           </Link>
 
           {/* Essential Links */}
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-base-content/80">
+          <nav className="flex flex-wrap justify-center gap-x-12 gap-y-3">
             {config.mailgun.supportEmail && (
               <a
                 href={`mailto:${config.mailgun.supportEmail}`}
-                className="hover:text-primary transition-colors"
+                className="group text-sm text-neutral-400 hover:text-primary transition-colors duration-350 ease-luxury"
               >
-                Support
+                <span className="relative">
+                  Support
+                  <span className="absolute left-0 -bottom-px w-0 h-px bg-primary transition-all duration-350 ease-luxury group-hover:w-full" />
+                </span>
               </a>
             )}
             <Link
               href="/privacy-policy"
-              className="hover:text-primary transition-colors"
+              className="group text-sm text-neutral-400 hover:text-primary transition-colors duration-350 ease-luxury"
             >
-              Privacy Policy
+              <span className="relative">
+                Privacy Policy
+                <span className="absolute left-0 -bottom-px w-0 h-px bg-primary transition-all duration-350 ease-luxury group-hover:w-full" />
+              </span>
             </Link>
-            <Link href="/tos" className="hover:text-primary transition-colors">
-              Terms of Service
+            <Link
+              href="/tos"
+              className="group text-sm text-neutral-400 hover:text-primary transition-colors duration-350 ease-luxury"
+            >
+              <span className="relative">
+                Terms of Service
+                <span className="absolute left-0 -bottom-px w-0 h-px bg-primary transition-all duration-350 ease-luxury group-hover:w-full" />
+              </span>
             </Link>
-          </div>
+          </nav>
 
           {/* Copyright */}
-          <div className="text-sm text-base-content/60">
+          <div className="text-sm text-neutral-500">
             © {new Date().getFullYear()} {config.appName}. All rights reserved.
           </div>
         </div>

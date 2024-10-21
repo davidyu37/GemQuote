@@ -131,34 +131,53 @@ const Item = ({
   const { title, description, svg } = feature;
 
   return (
-    <li className="border-b border-base-300 last:border-none">
+    <li className="border-b border-primary/10 last:border-none">
       <button
-        className="relative flex gap-2 items-center w-full py-5 text-base font-medium text-left md:text-lg"
+        className="relative flex gap-4 items-center w-full py-6 text-base md:text-lg group"
         onClick={(e) => {
           e.preventDefault();
           setFeatureSelected();
         }}
         aria-expanded={isOpen}
       >
-        <span className={`duration-100 ${isOpen ? "text-primary" : ""}`}>
-          {svg}
-        </span>
+        {/* Icon wrapper with animations */}
         <span
-          className={`flex-1 text-base-content ${
-            isOpen ? "text-primary font-semibold" : ""
-          }`}
+          className={`relative flex items-center justify-center transition-colors duration-350 ease-luxury
+            ${
+              isOpen
+                ? "text-primary"
+                : "text-primary/60 group-hover:text-primary/80"
+            }`}
         >
-          <h3 className="inline">{title}</h3>
+          {/* Icon */}
+          <span className="relative">{svg}</span>
         </span>
+
+        {/* Title */}
+        <span
+          className={`flex-1 font-medium transition-colors duration-350 ease-luxury
+            ${
+              isOpen
+                ? "text-primary"
+                : "text-neutral-200 group-hover:text-neutral-50"
+            }`}
+        >
+          <h3 className="text-left">{title}</h3>
+        </span>
+
+        {/* Arrow icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2.5}
           stroke="currentColor"
-          className={`w-4 h-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-primary" : ""
-          }`}
+          className={`w-4 h-4 transition-transform duration-350 ease-luxury
+            ${
+              isOpen
+                ? "rotate-180 text-primary"
+                : "text-primary/60 group-hover:text-primary/80"
+            }`}
         >
           <path
             strokeLinecap="round"
@@ -168,16 +187,19 @@ const Item = ({
         </svg>
       </button>
 
+      {/* Content */}
       <div
         ref={accordion}
-        className={`transition-all duration-300 ease-in-out text-base-content-secondary overflow-hidden`}
+        className="transition-all duration-350 ease-luxury overflow-hidden"
         style={
           isOpen
             ? { maxHeight: accordion?.current?.scrollHeight, opacity: 1 }
             : { maxHeight: 0, opacity: 0 }
         }
       >
-        <div className="pb-5 leading-relaxed">{description}</div>
+        <div className="pb-6 text-neutral-300 leading-relaxed">
+          {description}
+        </div>
       </div>
     </li>
   );
@@ -186,15 +208,13 @@ const Item = ({
 const Media = ({ feature }: { feature: Feature }) => {
   return (
     <div className="hidden lg:block relative">
-      <div className="transition-opacity duration-300 ease-in-out">
-        <Image
-          src={feature.image.path}
-          alt={feature.image.alt}
-          className="rounded-2xl shadow-lg object-cover object-center"
-          width={500}
-          height={400}
-        />
-      </div>
+      <Image
+        src={feature.image.path}
+        alt={feature.image.alt}
+        className="rounded-2xl shadow-gold border border-primary/10 object-cover object-center transition-all duration-350 ease-luxury"
+        width={500}
+        height={400}
+      />
     </div>
   );
 };
@@ -203,44 +223,53 @@ const FeaturesAccordion = () => {
   const [featureSelected, setFeatureSelected] = useState<number>(0);
 
   return (
-    <section
-      className="py-24 md:py-32 max-w-7xl mx-auto bg-base-100"
-      id="features"
-    >
-      <div className="px-8">
-        <h2 className="font-extrabold text-4xl lg:text-5xl tracking-tight mb-12 md:mb-24 text-center">
-          Everything you need to
-          <span className="bg-primary text-primary-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed whitespace-nowrap">
+    <section className="relative w-full bg-neutral-950" id="features">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        {/* Section heading */}
+        <h2 className="font-serif font-extrabold text-4xl lg:text-5xl tracking-tight mb-16 md:mb-24 text-center">
+          <span className="text-neutral-50">Everything you need to </span>
+          <span className="bg-primary text-neutral-950 px-4 py-1 rounded-md inline-block transform -rotate-3 hover:rotate-0 hover:scale-110 transition-all duration-300">
             scale
           </span>
         </h2>
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
-          <div className="grid grid-cols-1 items-stretch gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20">
-            <ul className="w-full divide-y divide-base-300">
-              {features.map((feature, i) => (
-                <Item
-                  key={feature.title}
-                  index={i}
-                  feature={feature}
-                  isOpen={featureSelected === i}
-                  setFeatureSelected={() => setFeatureSelected(i)}
-                />
-              ))}
-            </ul>
 
-            <Media feature={features[featureSelected]} key={featureSelected} />
-          </div>
+        {/* Content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Accordion list */}
+          <ul className="w-full divide-y divide-primary/10">
+            {features.map((feature, i) => (
+              <Item
+                key={feature.title}
+                index={i}
+                feature={feature}
+                isOpen={featureSelected === i}
+                setFeatureSelected={() => setFeatureSelected(i)}
+              />
+            ))}
+          </ul>
+
+          {/* Feature image */}
+          <Media feature={features[featureSelected]} key={featureSelected} />
         </div>
-        <a
-          href="https://getwaitlist.com/waitlist/21281"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="btn btn-primary btn-wide">
-            Get Early Access Now
-          </button>
-        </a>
+
+        {/* CTA Button */}
+        <div className="mt-16 text-center">
+          <a
+            href="https://getwaitlist.com/waitlist/21281"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center"
+          >
+            <div className="absolute -inset-px rounded-lg bg-primary/20 animate-pulse [animation-duration:3s]"></div>
+            <button className="relative px-8 py-3 bg-neutral-950 text-primary hover:text-primary-light border border-primary/20 hover:border-primary/40 rounded-lg transition-colors duration-350 ease-luxury text-lg font-medium">
+              Get Early Access Now
+            </button>
+          </a>
+        </div>
       </div>
+
+      {/* Bottom border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-primary/10"></div>
     </section>
   );
 };
