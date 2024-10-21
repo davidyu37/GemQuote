@@ -1,5 +1,5 @@
+// components/FeaturesAccordion.tsx
 "use client";
-
 import { useState, useRef } from "react";
 import type { JSX } from "react";
 import Image from "next/image";
@@ -7,51 +7,22 @@ import Image from "next/image";
 interface Feature {
   title: string;
   description: string;
-  type?: "video" | "image";
-  path?: string;
-  format?: string;
-  alt?: string;
+  image: {
+    path: string;
+    alt: string;
+  };
   svg?: JSX.Element;
 }
 
-// The features array is a list of features that will be displayed in the accordion.
-// - title: The title of the feature
-// - description: The description of the feature (when clicked)
-// - type: The type of media (video or image)
-// - path: The path to the media (for better SEO, try to use a local path)
-// - format: The format of the media (if type is 'video')
-// - alt: The alt text of the image (if type is 'image')
 const features = [
   {
-    title: "Quoting System",
+    title: "Smart Quote Management",
     description:
-      "Custom Quote Templates, Interactive Quotes, Real-Time Material Pricing, and Custom Item Quoting.",
-    type: "video",
-    path: "https://d3m8mk7e1mf7xn.cloudfront.net/app/quoting_system.webm",
-    format: "video/webm",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Inventory Management",
-    description:
-      "Serialized Inventory Tracking, Automated Reorder Points, Multi-Location Support, and Integration with E-commerce.",
-    type: "image",
-    path: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-    alt: "Inventory Management",
+      "Create professional quotes in minutes with customizable templates, automatic pricing calculations, and real-time material cost updates. Track every quote's status and follow-up automatically.",
+    image: {
+      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      alt: "Smart quoting dashboard showing quote management interface",
+    },
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,15 +35,19 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+          d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
         />
       </svg>
     ),
   },
   {
-    title: "Customer Relationship Management (CRM)",
+    title: "AI-Powered Communication",
     description:
-      "Customer Profiles, Loyalty Programs, and Automated Notifications.",
+      "Let AI handle follow-ups, reminders, and customer communications with a consistent brand voice. Smart notifications ensure no opportunity slips through the cracks.",
+    image: {
+      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      alt: "AI communication interface showing automated messaging",
+    },
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -85,15 +60,19 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+          d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
         />
       </svg>
     ),
   },
   {
-    title: "Analytics and Reporting",
+    title: "Sales Pipeline Management",
     description:
-      "Sales and Quoting Analytics, Inventory Performance, and Costing Reports.",
+      "Track your sales pipeline from initial inquiry to final sale. Monitor conversion rates, identify bottlenecks, and optimize your sales process with detailed analytics.",
+    image: {
+      path: "/gemquote_sales_dashboard.png", // Replace with your actual image path
+      alt: "Sales pipeline visualization showing deal stages",
+    },
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -106,14 +85,19 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"
+          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
         />
       </svg>
     ),
   },
   {
-    title: "Payment Integration",
-    description: "Multiple Payment Methods and Automated Invoicing.",
+    title: "Customer Relationship Tools",
+    description:
+      "Build stronger customer relationships with detailed customer profiles, purchase history tracking, and automated anniversary reminders. Keep all customer interactions in one place.",
+    image: {
+      path: "/gemquote_dashboard.png", // Replace with your actual image path
+      alt: "Customer relationship management dashboard",
+    },
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -126,14 +110,13 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"
+          d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
         />
       </svg>
     ),
   },
 ] as Feature[];
 
-// An SEO-friendly accordion component including the title and a description (when clicked.)
 const Item = ({
   feature,
   isOpen,
@@ -148,7 +131,7 @@ const Item = ({
   const { title, description, svg } = feature;
 
   return (
-    <li>
+    <li className="border-b border-base-300 last:border-none">
       <button
         className="relative flex gap-2 items-center w-full py-5 text-base font-medium text-left md:text-lg"
         onClick={(e) => {
@@ -167,6 +150,22 @@ const Item = ({
         >
           <h3 className="inline">{title}</h3>
         </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2.5}
+          stroke="currentColor"
+          className={`w-4 h-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180 text-primary" : ""
+          }`}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+          />
+        </svg>
       </button>
 
       <div
@@ -184,66 +183,40 @@ const Item = ({
   );
 };
 
-// A component to display the media (video or image) of the feature. If the type is not specified, it will display an empty div.
-// Video are set to autoplay for best UX.
 const Media = ({ feature }: { feature: Feature }) => {
-  const { type, path, format, alt } = feature;
-  const style = "rounded-2xl aspect-square w-full sm:w-[26rem]";
-  const size = {
-    width: 500,
-    height: 500,
-  };
-
-  if (type === "video") {
-    return (
-      <video
-        className={style}
-        autoPlay
-        muted
-        loop
-        playsInline
-        controls
-        width={size.width}
-        height={size.height}
-      >
-        <source src={path} type={format} />
-      </video>
-    );
-  } else if (type === "image") {
-    return (
-      <Image
-        src={path}
-        alt={alt}
-        className={`${style} object-cover object-center`}
-        width={size.width}
-        height={size.height}
-      />
-    );
-  } else {
-    return <div className={`${style} !border-none`}></div>;
-  }
+  return (
+    <div className="hidden lg:block relative">
+      <div className="transition-opacity duration-300 ease-in-out">
+        <Image
+          src={feature.image.path}
+          alt={feature.image.alt}
+          className="rounded-2xl shadow-lg object-cover object-center"
+          width={500}
+          height={400}
+        />
+      </div>
+    </div>
+  );
 };
 
-// A component to display 2 to 5 features in an accordion.
-// By default, the first feature is selected. When a feature is clicked, the others are closed.
 const FeaturesAccordion = () => {
   const [featureSelected, setFeatureSelected] = useState<number>(0);
 
   return (
     <section
-      className="py-24 md:py-32 space-y-24 md:space-y-32 max-w-7xl mx-auto bg-base-100 "
+      className="py-24 md:py-32 max-w-7xl mx-auto bg-base-100"
       id="features"
     >
       <div className="px-8">
-        <h2 className="font-extrabold text-4xl lg:text-6xl tracking-tight mb-12 md:mb-24">
-          All you need to ship your startup fast
-          <span className="bg-neutral text-neutral-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed whitespace-nowrap">
-            and get profitable
+        <h2 className="font-extrabold text-4xl lg:text-5xl tracking-tight mb-12 md:mb-24 text-center">
+          Everything you need to
+          <span className="bg-primary text-primary-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed whitespace-nowrap">
+            scale
           </span>
         </h2>
-        <div className=" flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
           <div className="grid grid-cols-1 items-stretch gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20">
-            <ul className="w-full">
+            <ul className="w-full divide-y divide-base-300">
               {features.map((feature, i) => (
                 <Item
                   key={feature.title}
@@ -258,6 +231,15 @@ const FeaturesAccordion = () => {
             <Media feature={features[featureSelected]} key={featureSelected} />
           </div>
         </div>
+        <a
+          href="https://getwaitlist.com/waitlist/21281"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="btn btn-primary btn-wide">
+            Get Early Access Now
+          </button>
+        </a>
       </div>
     </section>
   );
