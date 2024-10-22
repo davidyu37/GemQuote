@@ -1,4 +1,4 @@
-coimport Image from "next/image";
+import Image from "next/image";
 import { authors, articles } from "../../_assets/content";
 import CardArticle from "../../_assets/components/CardArticle";
 import { getSEOTags } from "@/libs/seo";
