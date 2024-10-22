@@ -1,8 +1,10 @@
+"use client";
 // components/Hero.tsx
 
 import Image from "next/image";
 import TestimonialsAvatars from "./TestimonialsAvatars";
 import config from "@/config";
+import Script from "next/script";
 
 const Hero = () => {
   return (
@@ -49,19 +51,13 @@ const Hero = () => {
             integrated email management.
           </p>
 
-          {/* Call to Action Button */}
-          <div className="mt-16 text-center">
-            <a
-              href="https://getwaitlist.com/waitlist/21281"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center"
-            >
-              <div className="absolute -inset-px rounded-lg bg-primary/20 animate-pulse [animation-duration:3s]"></div>
-              <button className="relative px-8 py-3 bg-neutral-950 text-primary hover:text-primary-light border border-primary/20 hover:border-primary/40 rounded-lg transition-colors duration-350 ease-luxury text-lg font-medium">
-                Get Early Access Now
-              </button>
-            </a>
+          {/* Adjusted GetWaitlist Widget container */}
+          <div className="mt-16 text-center w-full max-w-md">
+            <div
+              id="getWaitlistContainer"
+              data-waitlist_id="21281"
+              data-widget_type="WIDGET_2"
+            ></div>
           </div>
 
           {/* Testimonials with fade-up animation */}
@@ -91,6 +87,20 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Add GetWaitlist CSS and JS */}
+      <Script
+        src="https://prod-waitlist-widget.s3.us-east-2.amazonaws.com/getwaitlist.min.js"
+        strategy="afterInteractive"
+      />
+      <style jsx global>{`
+        @import url("https://prod-waitlist-widget.s3.us-east-2.amazonaws.com/getwaitlist.min.css");
+
+        /* Hide the "Waitlist hosted by getwaitlist.com" text */
+        #getWaitlistContainer .gw-mt-2:last-child {
+          display: none !important;
+        }
+      `}</style>
     </section>
   );
 };
